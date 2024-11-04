@@ -10,7 +10,7 @@ git remote add origin "https://github.com/SiLaX49/VigiSec"
 
 pour créer la branche en local :
 
-git checkout -b dev-so
+git checkout -b dev-seb
 
 ajouter les changements :
 
