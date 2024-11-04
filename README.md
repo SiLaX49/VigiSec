@@ -2,7 +2,7 @@
 
 pour initialiser le github : aller dans son dossier sur l'id ouvrir le terminal et écrire :
 
-git init
+> git init
 
 ensuite pour ajouter le dépot :
 
