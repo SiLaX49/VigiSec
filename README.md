@@ -2,8 +2,9 @@
 
 ## pour initialiser le github : aller dans son dossier sur l'id ouvrir le terminal et écrire :
 
-git init
-
+'''' sh 
+  git init
+'''sh
 ## ensuite pour ajouter le dépot :
 
 git remote add origin "https://github.com/SiLaX49/VigiSec"
