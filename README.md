@@ -22,4 +22,4 @@ git commit -m "msg de commit"
 
 pour push sur notre branch ET PAS LE MAIN :
 
-git push origin dev-so
+git push origin dev-seb
