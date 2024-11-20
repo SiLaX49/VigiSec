@@ -8,6 +8,10 @@ services:
       - "3000:80"
     depends_on:
       - backend
+    volumes:
+      - ./backend:/app  # Permet de partager le code local avec le conteneur
+    environment:
+        - FLASK_ENV=development  # Définir le mode développement pour Flask
 
   backend:
     build:

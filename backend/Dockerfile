@@ -1,7 +1,20 @@
-FROM node:18
+# Utiliser Python comme image de base
+FROM python:3.10-slim
+
+# Définir le répertoire de travail
 WORKDIR /app
-COPY backend/package.json package-lock.json ./
-RUN npm install
-COPY backend .
+
+# Copier les fichiers de dépendances
+COPY requirements.txt ./
+
+# Installer les dépendances
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copier le code source dans le conteneur
+COPY . .
+
+# Exposer le port de Flask
 EXPOSE 5000
-CMD ["npm", "start"]
+
+# Commande pour démarrer le backend
+CMD ["python", "app.py"]
