@@ -4,41 +4,51 @@ const axios = require('axios');
 
 let mainWindow;
 
-app.on('ready', () => {
+app.whenReady().then(() => {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
             preload: path.join(__dirname, 'renderer.js'),
             contextIsolation: true,
-            nodeIntegration: false,
-        },
+            nodeIntegration: false
+        }
     });
 
     mainWindow.loadFile('index.html');
-    mainWindow.setMenu(null);
+
+    app.on('activate', () => {
+        if (BrowserWindow.getAllWindows().length === 0) {
+            createWindow();
+        }
+    });
+});
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
 
 ipcMain.handle('select-file', async () => {
-    const result = await dialog.showOpenDialog(mainWindow, {
+    const result = await dialog.showOpenDialog({
         properties: ['openFile'],
+        filters: [{ name: 'All Files', extensions: ['*'] }]
     });
 
-    if (result.canceled) return null;
+    if (result.canceled) {
+        return null;
+    }
+
     return result.filePaths[0];
 });
 
 ipcMain.handle('analyze-file', async (event, filePath) => {
     try {
-        const formData = new FormData();
-        formData.append('file', require('fs').createReadStream(filePath));
-
-        const response = await axios.post('http://localhost:5000/analyze', formData, {
-            headers: formData.getHeaders(),
-        });
-
+        const response = await axios.post('http://localhost:5000/analyze', { filePath });
         return response.data;
     } catch (error) {
-        return { error: 'Analysis failed. Please try again.' };
+        console.error('Error analyzing file:', error);
+        return { success: false, message: 'Failed to analyze file.' };
     }
 });

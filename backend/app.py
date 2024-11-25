@@ -1,42 +1,50 @@
 from flask import Flask, request, jsonify
 import os
-import requests
+from werkzeug.utils import secure_filename
+
+# Configuration de base
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/')
-def home():
-    return "Welcome to VigiSec API! Use the /analyze endpoint to analyze files."
+# Créer le dossier d'uploads s'il n'existe pas
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Endpoint pour analyser un fichier
+# Vérifie si l'extension du fichier est autorisée
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Route pour analyser un fichier
 @app.route('/analyze', methods=['POST'])
 def analyze_file():
     if 'file' not in request.files:
-        return jsonify({"error": "No file part"}), 400
+        return jsonify({'success': False, 'message': 'Aucun fichier fourni dans la requête.'}), 400
 
     file = request.files['file']
     if file.filename == '':
-        return jsonify({"error": "No selected file"}), 400
+        return jsonify({'success': False, 'message': 'Aucun fichier sélectionné.'}), 400
 
-    file_path = os.path.join("uploads", file.filename)
-    file.save(file_path)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
 
-    # Simuler une analyse avec une API publique (comme VirusTotal)
-    analysis_result = fake_analyze_file(file_path)
+        # Analyse fictive (remplacez par une analyse réelle)
+        result = {
+            "file_name": filename,
+            "status": "safe",  # Remplacez par une logique réelle
+            "details": "Aucune menace détectée."
+        }
 
-    # Supprimer le fichier après analyse
-    os.remove(file_path)
+        # Supprime le fichier après l'analyse
+        os.remove(file_path)
 
-    return jsonify(analysis_result)
+        return jsonify({'success': True, 'data': result}), 200
 
-def fake_analyze_file(file_path):
-    # Simulation d'une analyse
-    return {
-        "filename": os.path.basename(file_path),
-        "status": "safe",
-        "details": "No threats detected"
-    }
+    return jsonify({'success': False, 'message': 'Type de fichier non autorisé.'}), 400
 
+# Démarre l'application
 if __name__ == '__main__':
-    os.makedirs("uploads", exist_ok=True)
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
