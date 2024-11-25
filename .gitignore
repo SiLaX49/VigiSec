@@ -1,0 +1,13 @@
+# Node.js
+node_modules
+npm-debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Environnement virtuel
+venv/
+
+# Docker
+*.log
