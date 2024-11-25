@@ -24,3 +24,7 @@ git commit -m "msg de commit"
 ````
 git push origin dev-seb
 ````
+##### pour récupérer le code :
+````
+git pull origin main
+````
