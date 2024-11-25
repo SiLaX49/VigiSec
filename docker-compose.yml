@@ -1,30 +1,21 @@
-version: '3.8'
+version: '3.9'
 
 services:
   backend:
     build:
       context: ./backend
-    environment:
-      - DB_HOST=database
-      - DB_USER=admin
-      - DB_PASSWORD=admin
-      - DB_NAME=vigisec
     ports:
       - "5000:5000"
+    volumes:
+      - ./backend/uploads:/app/uploads
     depends_on:
       - database
 
   database:
-    image: postgres:15
+    image: postgres:latest
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: vigisec
-    volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      POSTGRES_USER: vigisec_user
+      POSTGRES_PASSWORD: vigisec_password
+      POSTGRES_DB: vigisec_db
     ports:
       - "5432:5432"
-
-volumes:
-  db_data:
