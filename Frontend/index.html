@@ -4,15 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VigiSec</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #results {
+      margin-top: 20px;
+    }
+    .result {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-<h1>VigiSec - File Analysis</h1>
-<button id="select-file">Select File</button>
-<p id="file-path">No file selected.</p>
-<h3 id="analysis-result"></h3>
-<p id="filePath"></p>
-<button id="analyzeBtn">Analyze</button>
-<pre id="result"></pre>
-<script src="renderer.js"></script>
+<h1>VigiSec - Analyse de Fichiers</h1>
+<p>Sélectionnez des fichiers à analyser :</p>
+<input type="file" id="uploadFiles" multiple>
+<div id="results"></div>
 </body>
 </html>
