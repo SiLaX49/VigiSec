@@ -19,3 +19,11 @@ services:
       POSTGRES_DB: vigisec_db
     ports:
       - "5432:5432"
+  frontend:
+    image: node:16
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    command: bash -c "npm install && npm start"
+    ports:
+      - "3000:3000"
