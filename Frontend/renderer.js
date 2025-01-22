@@ -1,53 +1,58 @@
-const { ipcRenderer } = require('electron');
+const { remote } = require('electron');
 const axios = require('axios');
 
-// Sélectionne les fichiers
-document.getElementById('uploadFiles').addEventListener('change', async (event) => {
-    const files = event.target.files;
-    if (files.length === 0) {
-        alert('Aucun fichier sélectionné.');
-        return;
-    }
+document.getElementById('minimize').addEventListener('click', () => {
+    const window = remote.getCurrentWindow();
+    window.minimize();
+});
 
-    const formData = new FormData();
-    for (const file of files) {
-        formData.append('files[]', file);
-    }
+document.getElementById('close').addEventListener('click', () => {
+    const window = remote.getCurrentWindow();
+    window.close();
+});
 
-    try {
-        const response = await axios.post('http://localhost:5000/analyze-multiple', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+const fileInput = document.getElementById('fileInput');
+const scanButton = document.getElementById('scanButton');
+const fileNameDisplay = document.getElementById('fileName');
+const loading = document.getElementById('loading');
+const results = document.getElementById('results');
 
-        // Affiche les résultats
-        displayResults(response.data.results);
-    } catch (error) {
-        console.error('Erreur:', error);
-        alert('Une erreur est survenue pendant l\'analyse.');
+let selectedFile = null;
+
+fileInput.addEventListener('change', (event) => {
+    selectedFile = event.target.files[0];
+    if (selectedFile) {
+        fileNameDisplay.textContent = `Fichier sélectionné : ${selectedFile.name}`;
+        scanButton.disabled = false;
     }
 });
 
-// Affiche les résultats dans l'interface
-function displayResults(results) {
-    const resultContainer = document.getElementById('results');
-    resultContainer.innerHTML = '';
+scanButton.addEventListener('click', async () => {
+    if (!selectedFile) return alert('Veuillez sélectionner un fichier.');
 
-    results.forEach((result) => {
-        const resultDiv = document.createElement('div');
-        resultDiv.classList.add('result');
-        if (result.status === 'success') {
-            resultDiv.innerHTML = `
-                <strong>${result.file}</strong>: Analyse réussie.<br>
-                Détails: ${JSON.stringify(result.data)}
-            `;
-        } else {
-            resultDiv.innerHTML = `
-                <strong>${result.file || 'Fichier inconnu'}</strong>: Échec de l'analyse.<br>
-                Message: ${result.message}
-            `;
-        }
-        resultContainer.appendChild(resultDiv);
-    });
-}
+    scanButton.disabled = true;
+    loading.style.display = 'block';
+    results.innerHTML = '';
+
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    try {
+        const scanResponse = await axios.post('http://localhost:5000/scan', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+
+        const analysisId = scanResponse.data.data.id;
+        const intervalId = setInterval(async () => {
+            const reportResponse = await axios.get(`http://localhost:5000/report/${analysisId}`);
+            const reportData = reportResponse.data.data;
+            if (reportData.attributes.status === 'completed') {
+                clearInterval(intervalId);
+                results.innerHTML = `<pre>${JSON.stringify(reportData, null, 2)}</pre>`;
+                loading.style.display = 'none';
+            }
+        }, 5000);
+    } catch (error) {
+        results.innerHTML = `<p>Erreur : ${error.message}</p>`;
+    }
+});
