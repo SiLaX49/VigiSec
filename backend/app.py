@@ -4,7 +4,8 @@ import os
 
 # Initialiser l'application Flask
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 # Configuration
 app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')

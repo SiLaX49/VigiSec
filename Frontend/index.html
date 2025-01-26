@@ -2,13 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <title>Analyse de Fichiers - Vigisec</title>
   <link rel="stylesheet" href="globals.css" />
   <link rel="stylesheet" href="styleguide.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div class="page-d-accueil">
-  <!-- Conteneur principal -->
   <div class="div">
     <!-- En-tête -->
     <header class="header">
@@ -16,8 +16,8 @@
         <img class="security-shield-logo" src="images/security_shield_logo.png" alt="Logo Vigisec" />
       </div>
       <div class="header-auth">
-        <button class="button"><span class="text-wrapper">Sign in</span></button>
-        <button class="button"><span class="text-wrapper">Register</span></button>
+        <button id="minimize" class="button"><span class="text-wrapper">Minimize</span></button>
+        <button id="close" class="button"><span class="text-wrapper">Close</span></button>
       </div>
     </header>
 
@@ -26,23 +26,26 @@
       Bienvenue sur <img class="security-shield-logo" src="images/security_shield_logo.png" alt="Vigisec" /> igiSec !
     </div>
 
-    <!-- Bouton analyser -->
-    <button class="bouton-wrapper">
-      <div class="bouton">Analysez vos fichiers</div>
-    </button>
-
     <!-- Sélecteur de fichier -->
     <div class="container">
-      <div class="folder">
-        <div class="top"></div>
-        <div class="bottom"></div>
-      </div>
       <label class="custom-file-upload">
-        <input class="title" type="file" />
+        <input id="fileInput" type="file" />
         Choose a file
       </label>
+      <div id="fileName" style="margin-top: 10px; color: white;"></div>
+      <button id="scanButton" class="button" disabled>Analyser le fichier</button>
     </div>
+
+    <!-- Chargement -->
+    <div id="loading" style="display: none; margin-top: 20px; color: white;">
+      Analyse en cours... Veuillez patienter.
+    </div>
+
+    <!-- Résultats -->
+    <div id="results" style="margin-top: 20px; color: white;"></div>
   </div>
 </div>
+
+<script src="renderer.js"></script>
 </body>
 </html>

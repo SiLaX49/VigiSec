@@ -14,30 +14,21 @@ IF ERRORLEVEL 1 (
 REM Attendre un moment pour permettre aux services de démarrer
 timeout /t 5 >nul
 
-REM Démarrer le backend via start.sh
+REM Démarrer le backend dans une nouvelle fenêtre
 echo Starting backend...
-start "" "C:\Program Files\Git\bin\bash.exe" -c "cd backend && ./start.sh"
+start "" cmd /c "cd backend && .\start.sh"
 
-REM Vérifier si le backend a échoué
-IF ERRORLEVEL 1 (
-    echo Backend failed to start. Please check the backend logs.
-    pause
-    exit /b 1
-)
-
-REM Démarrer le frontend
+REM Démarrer le frontend dans le terminal principal
 echo Starting frontend...
 cd frontend
 npm start
+
+REM Retour à la racine une fois le frontend arrêté
 cd ..
 
-REM Lancer l'application Electron
+REM Lancer l'application Electron dans une nouvelle fenêtre
 echo Starting Electron...
-npx electron . || (
-    echo Electron failed to start. Please check your setup.
-    pause
-    exit /b 1
-)
+start "" cmd /c "npx electron ."
 
 REM Script terminé
 echo All services started successfully.
