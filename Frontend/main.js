@@ -10,8 +10,8 @@ function createWindow() {
     },
   });
 
-  // Charge ton fichier index.html avec le chemin absolu
-  mainWindow.loadURL('file:///C:/Users/s4dbu/Desktop/projetperso/vigisec/Frontend/index.html');
+  const indexPath = path.join(__dirname, 'index.html');
+  mainWindow.loadFile(indexPath);
 }
 
 app.whenReady().then(createWindow);

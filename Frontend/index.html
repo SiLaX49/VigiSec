@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="page-d-accueil">
-      <div class="div">
-        <div class="overlap">
-          <header class="header">
-            <div class="block"></div>
-            <div class="header-auth">
-              <button class="button"><button class="text-wrapper">Sign in</button></button>
-              <button class="button"><button class="text-wrapper">Register</button></button>
-            </div>
-          </header>
-          <img class="security-shield-logo" src="images/security_shield_logo.png" />
-          <div class="text-wrapper-2">Vigisec</div>
-        </div>
-        <button class="bouton-wrapper"><div class="bouton">Analysez vos fichiers</div></button>
-        <div class="overlap-group">
-          <div class="bienvenue-sur-igisec">Bienvenue sur&nbsp;&nbsp;&nbsp;&nbsp; igiSec !</div>
-          <img class="img" src="images/security_shield_logo.png" />
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="globals.css" />
+  <link rel="stylesheet" href="styleguide.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="page-d-accueil">
+  <!-- Conteneur principal -->
+  <div class="div">
+    <!-- En-tête -->
+    <header class="header">
+      <div class="block">
+        <img class="security-shield-logo" src="images/security_shield_logo.png" alt="Logo Vigisec" />
       </div>
+      <div class="header-auth">
+        <button class="button"><span class="text-wrapper">Sign in</span></button>
+        <button class="button"><span class="text-wrapper">Register</span></button>
+      </div>
+    </header>
+
+    <!-- Titre principal -->
+    <div class="bienvenue-sur-igisec">
+      Bienvenue sur <img class="security-shield-logo" src="images/security_shield_logo.png" alt="Vigisec" /> igiSec !
     </div>
-  </body>
+
+    <!-- Bouton analyser -->
+    <button class="bouton-wrapper">
+      <div class="bouton">Analysez vos fichiers</div>
+    </button>
+
+    <!-- Sélecteur de fichier -->
+    <div class="container">
+      <div class="folder">
+        <div class="top"></div>
+        <div class="bottom"></div>
+      </div>
+      <label class="custom-file-upload">
+        <input class="title" type="file" />
+        Choose a file
+      </label>
+    </div>
+  </div>
+</div>
+</body>
 </html>
