@@ -1,0 +1,174 @@
+.page-d-accueil {
+    background-color: #0a152f;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .page-d-accueil .div {
+    background-color: #0a152f;
+    overflow: hidden;
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+  }
+  
+  .page-d-accueil .overlap {
+    position: absolute;
+    width: 1952px;
+    height: 121px;
+    top: 0;
+    left: -32px;
+  }
+  
+  .page-d-accueil .header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1952px;
+    height: 121px;
+    align-items: center;
+    gap: 0px 1638px;
+    padding: var(--size-space-800);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #122144;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-color: var(--color-icon-neutral-on-neutral);
+  }
+  
+  .page-d-accueil .block {
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .page-d-accueil .header-auth {
+    display: flex;
+    width: 178px;
+    height: 32px;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: var(--size-space-300);
+    position: relative;
+  }
+  
+  .page-d-accueil .button {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    width: 83px;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-space-200);
+    padding: var(--size-space-200);
+    position: relative;
+    background-color: #182949;
+    border-radius: var(--size-radius-200);
+    overflow: hidden;
+    border: 1px solid;
+    border-color: transparent;
+  }
+  
+  .page-d-accueil .text-wrapper {
+    all: unset;
+    box-sizing: border-box;
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Montserrat-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 16px;
+    white-space: nowrap;
+  }
+  
+  .page-d-accueil .security-shield-logo {
+    position: absolute;
+    width: 183px;
+    height: 99px;
+    top: 11px;
+    left: 32px;
+  }
+  
+  .page-d-accueil .text-wrapper-2 {
+    position: absolute;
+    width: 170px;
+    top: 39px;
+    left: 184px;
+    font-family: "Montserrat-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 36px;
+    letter-spacing: 0;
+    line-height: 36px;
+  }
+  
+  .page-d-accueil .bouton-wrapper {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    width: 236px;
+    height: 82px;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-space-200);
+    padding: var(--size-space-300);
+    position: absolute;
+    top: 725px;
+    left: 842px;
+    background-color: #182949;
+    border-radius: var(--size-radius-200);
+    overflow: hidden;
+    border: 1px solid;
+    border-color: transparent;
+  }
+  
+  .page-d-accueil .bouton {
+    position: relative;
+    width: fit-content;
+    -webkit-text-stroke: 1px #1e1e1e;
+    font-family: "Montserrat-Regular", Helvetica;
+    font-weight: 400;
+    color: var(--color-text-brand-on-brand);
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 16px;
+    white-space: nowrap;
+  }
+  
+  .page-d-accueil .overlap-group {
+    position: absolute;
+    width: 1154px;
+    height: 134px;
+    top: 268px;
+    left: 383px;
+  }
+  
+  .page-d-accueil .bienvenue-sur-igisec {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Montserrat-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 96px;
+    letter-spacing: 0;
+    line-height: 134.4px;
+    white-space: nowrap;
+  }
+  
+  .page-d-accueil .img {
+    position: absolute;
+    width: 215px;
+    height: 122px;
+    top: 1px;
+    left: 659px;
+  }
+  

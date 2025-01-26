@@ -1,0 +1,32 @@
+:root {
+    --color-text-brand-on-brand: var(--color-primitives-brand-100);
+    --color-icon-neutral-on-neutral: var(--color-primitives-slate-100);
+    --size-space-200: 8px;
+    --size-radius-200: 8px;
+    --size-space-300: 12px;
+    --size-space-800: 32px;
+    --color-primitives-brand-100: rgba(245, 245, 245, 1);
+    --color-primitives-brand-900: rgba(30, 30, 30, 1);
+    --color-primitives-slate-100: rgba(243, 243, 243, 1);
+  }
+  
+  /*
+  
+  To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+  
+  <body data-color-mode="SDS-light">
+      <!-- the rest of your content -->
+  </body>
+  
+  You can apply the theme on any DOM node, not just the `body`
+  
+  */
+  
+  [data-color-mode="SDS-light"] {
+    --color-text-brand-on-brand: var(--color-primitives-brand-100);
+  }
+  
+  [data-color-mode="SDS-dark"] {
+    --color-text-brand-on-brand: var(--color-primitives-brand-900);
+  }
+  
