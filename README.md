@@ -82,9 +82,9 @@ Si vous exécutez manuellement l'application :
 
 ## ✍️ Auteurs
 
-- **De Boisanger Sebastian**
-- **Morisseau Noa**
-- **Monnier Sohail**
+- **Sebastian**
+- **Noa**
+- **Sohail**
 
 ---
 
@@ -93,6 +93,3 @@ Si vous exécutez manuellement l'application :
 Ce projet est sous licence [MIT](LICENSE). Vous êtes libre de l'utiliser, de le modifier et de le distribuer, sous réserve de respecter les termes de cette licence.
 
 ---
-```
-
-Ce fichier `README.md` est clair, complet et met en valeur votre travail en groupe tout en intégrant vos scripts spécifiques `setup.bat` et `start.bat`.
