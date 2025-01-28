@@ -6,8 +6,6 @@ npm-debug.log
 __pycache__/
 *.py[cod]
 
-# Environnement virtuel
-venv/
 
 # Docker
 *.log

@@ -39,9 +39,6 @@ scanButton.addEventListener('click', async () => {
   const formData = new FormData();
   formData.append('file', selectedFile);
 
-  const formData = new FormData();
-  formData.append('file', selectedFile);
-
   console.log('Fichier sélectionné :', selectedFile);
   console.log('FormData :', formData.get('file'));
 
