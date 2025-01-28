@@ -54,6 +54,28 @@ npm install >nul 2>&1 || (
 REM Retourne au répertoire précédent.
 cd ..
 
+REM Passe à la création et l'activation de l'environnement virtuel Python.
+echo Setting up Python virtual environment...
+
+REM Crée un environnement virtuel Python.
+python -m venv .venv
+
+REM Active l'environnement virtuel.
+IF EXIST .venv\Scripts\activate (
+    call .venv\Scripts\activate
+    REM Installe les dépendances Python à partir du fichier requirements.txt.
+    pip install -r requirements.txt >nul 2>&1 || (
+        echo Error installing Python dependencies. Please check your setup.
+        pause
+        exit /b 1
+    )
+    echo Python virtual environment setup completed.
+) ELSE (
+    echo Failed to create Python virtual environment. Please check your Python installation.
+    pause
+    exit /b 1
+)
+
 REM Confirme que le script s'est exécuté correctement.
 echo Setup completed successfully.
 
