@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Connexion - Vigisec</title>
+    <!-- Lien vers le fichier CSS externe -->
+    <link rel="stylesheet" href="login.css">
+    <!-- Importer la police Montserrat depuis Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Vigisec</h1>
+        <div class="buttons">
+            <button class="uiverse-button-choice" onclick="window.location.href='index.html'">Accueil</button>
+            <button class="uiverse-button-choice" onclick="window.location.href='inscription.html'">Register</button>
+        </div>
+    </header>
+
+    <!-- Formulaire de connexion -->
+    <div class="login-container">
+        <form class="login-form">
+            <h2>Connexion</h2>
+            <div class="input-group">
+                <input type="text" id="username" required>
+                <label for="username">Nom d'utilisateur</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" required>
+                <label for="password">Mot de passe</label>
+            </div>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+</body>
+</html>

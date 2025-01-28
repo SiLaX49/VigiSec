@@ -1,0 +1,167 @@
+/* Appliquer la police Montserrat à tous les textes */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Prendre toute la hauteur de la fenêtre */
+}
+
+/* Style pour le header */
+header {
+    background-color: #0e3774;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+/* Style pour les boutons "Register" et "Login" */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.buttons button {
+    background-color: #ffffff;
+    color: #0e3774;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* Texte en gras */
+}
+
+.buttons button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style pour le texte central */
+.welcome {
+    background-color: #182949;
+    color: white;
+    text-align: center;
+    flex: 1; /* Prendre tout l'espace disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-text {
+    font-size: 3.5em; /* Texte plus gros */
+    font-weight: bold;
+    margin-bottom: 20px; /* Espacement avec le bouton */
+}
+
+/* Style pour le dossier animé */
+.folder {
+    position: relative;
+    animation: float 2.5s infinite ease-in-out;
+    transition: transform 0.3s ease;
+    margin-bottom: 20px; /* Espacement avec le bouton "Choisissez un fichier" */
+}
+
+.folder:hover {
+    transform: scale(1.05);
+}
+
+.folder .top {
+    background: linear-gradient(135deg, #ff9a56, #ff6f56);
+    width: 80px;
+    height: 20px;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+.folder .bottom {
+    background: linear-gradient(135deg, #ffe563, #ffc663);
+    width: 120px;
+    height: 80px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 0 10px 10px 10px;
+    position: relative;
+    top: -10px;
+}
+
+/* Style pour le bouton "Choisissez un fichier" */
+.uiverse-button-choice {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #725AC1;
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 2px solid #725AC1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 #725AC1;
+    margin-bottom: 20px; /* Espacement avec le bouton "Analyse" */
+}
+
+.uiverse-button-choice:hover {
+    color: white;
+    box-shadow: inset 0 -100px 0 0 #725AC1;
+}
+
+.uiverse-button-choice:active {
+    transform: scale(0.9);
+}
+
+.uiverse-button-choice input[type="file"] {
+    display: none;
+}
+
+/* Style pour le bouton "Analyse" */
+.uiverse-button-analyse {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #725AC1;
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 2px solid #725AC1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 #725AC1;
+}
+
+.uiverse-button-analyse:hover {
+    color: white;
+    box-shadow: inset 0 -100px 0 0 #725AC1;
+}
+
+.uiverse-button-analyse:active {
+    transform: scale(0.9);
+}
+
+.uiverse-button-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+/* Animation pour le dossier */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
