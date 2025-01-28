@@ -1,23 +1,27 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 
-function createWindow() {
-  const mainWindow = new BrowserWindow({
-    width: 1980,
-    height: 1080,
+let mainWindow;
+app.disableHardwareAcceleration();
+app.on('ready', () => {
+  mainWindow = new BrowserWindow({
+    width: 400,
+    height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      enableRemoteModule: false,
+      nodeIntegration: false,
     },
   });
 
-  const indexPath = path.join(__dirname, 'index.html');
-  mainWindow.loadFile(indexPath);
-}
+  mainWindow.loadFile('index.html');
+});
 
-app.whenReady().then(createWindow);
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+// Gestion de la boîte de dialogue pour sélectionner un fichier
+ipcMain.handle('dialog:openFile', async () => {
+  const { canceled, filePaths } = await dialog.showOpenDialog({
+    properties: ['openFile'],
+  });
+  return { canceled, filePath: filePaths[0] };
 });

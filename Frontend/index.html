@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,50 +10,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1>Vigisec</h1>
-        <div class="buttons">
-            <button class="uiverse-button-choice" onclick="window.location.href='inscription.html'">Register</button>
-            <button class="uiverse-button-choice" onclick="window.location.href='login.html'">Login</button>
-        </div>
-    </header>
+<!-- Header -->
+<header>
+    <h1>Vigisec</h1>
+    <div class="buttons">
+        <button class="uiverse-button-choice" onclick="window.location.href='inscription.html'">Register</button>
+        <button class="uiverse-button-choice" onclick="window.location.href='login.html'">Login</button>
+    </div>
+</header>
 
-    <!-- Section centrale -->
-    <div class="welcome">
-        <span class="welcome-text">Bienvenue sur Vigisec</span>
+<!-- Section centrale -->
+<div class="welcome">
+    <span class="welcome-text">Bienvenue sur Vigisec</span>
 
-        <!-- Dossier animé -->
-        <div class="folder">
-            <div class="top"></div>
-            <div class="bottom"></div>
-        </div>
-
-        <!-- Bouton "Choisissez un fichier" -->
-        <label class="uiverse-button-choice">
-            <input type="file" id="file-input" />
-            Choisissez un fichier
-        </label>
-
-        <!-- Bouton "Analyse" -->
-        <button class="uiverse-button-analyse">
-            <span class="uiverse-button-text">Analyse</span>
-        </button>
+    <!-- Dossier animé -->
+    <div class="folder">
+        <div class="top"></div>
+        <div class="bottom"></div>
     </div>
 
-    <!-- Script pour gérer la sélection de fichier -->
-    <script>
-        // Récupérer l'élément input de type fichier
-        const fileInput = document.getElementById('file-input');
+    <!-- Bouton "Choisissez un fichier" -->
+    <label class="uiverse-button-choice">
+        <input type="file" id="file-input" />
+        Choisissez un fichier
+    </label>
 
-        // Écouter l'événement "change" pour détecter la sélection d'un fichier
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0]; // Récupérer le fichier sélectionné
-            if (file) {
-                alert(`Fichier sélectionné : ${file.name}`);
-                // Vous pouvez ajouter ici la logique pour traiter le fichier
-            }
-        });
-    </script>
+    <!-- Bouton "Analyse" -->
+    <button class="uiverse-button-analyse">
+        <span class="uiverse-button-text">Analyse</span>
+    </button>
+
+    <!-- Zone pour afficher les statuts -->
+    <div id="status">Statut : En attente d'une action.</div>
+</div>
+
+<!-- Inclure le fichier JS externe -->
+<script src="renderer.js"></script>
 </body>
 </html>

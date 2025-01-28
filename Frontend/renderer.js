@@ -1,69 +1,63 @@
-const { remote } = require('electron');
-const axios = require('axios');
+// Récupérer les éléments HTML nécessaires
+const fileInput = document.getElementById('file-input');
+const analyseButton = document.querySelector('.uiverse-button-analyse');
+const statusElement = document.getElementById('status');
 
-document.getElementById('minimize').addEventListener('click', () => {
-  const window = remote.getCurrentWindow();
-  window.minimize();
+// Vérifier si le backend est actif lors du chargement de la page
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/');
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Backend response:", data);
+            statusElement.innerText = `Backend Status: ${data.message}`;
+        } else {
+            console.error("Failed to connect to the backend:", response.statusText);
+            statusElement.innerText = "Backend inaccessible.";
+        }
+    } catch (error) {
+        console.error("Error connecting to the backend:", error.message);
+        statusElement.innerText = "Impossible de se connecter au backend.";
+    }
 });
 
-document.getElementById('close').addEventListener('click', () => {
-  const window = remote.getCurrentWindow();
-  window.close();
-});
+// Gérer l'envoi du fichier vers /file_scan
+analyseButton.addEventListener('click', async () => {
+    const file = fileInput.files[0]; // Récupérer le fichier sélectionné
 
-const fileInput = document.getElementById('fileInput');
-const scanButton = document.getElementById('scanButton');
-const fileNameDisplay = document.getElementById('fileName');
-const loading = document.getElementById('loading');
-const results = document.getElementById('results');
+    if (!file) {
+        alert("Veuillez sélectionner un fichier avant de lancer l'analyse.");
+        return;
+    }
 
-let selectedFile = null;
+    // Créer un objet FormData pour envoyer le fichier
+    const formData = new FormData();
+    formData.append('file', file);
 
-// Quand un fichier est sélectionné
-fileInput.addEventListener('change', (event) => {
-  selectedFile = event.target.files[0];
-  if (selectedFile) {
-    fileNameDisplay.textContent = `Fichier sélectionné : ${selectedFile.name}`;
-    scanButton.disabled = false;
-  }
-});
+    try {
+        // Mettre à jour le statut
+        statusElement.innerText = "Analyse en cours...";
 
-// Quand l'utilisateur clique sur "Analyser le fichier"
-scanButton.addEventListener('click', async () => {
-  if (!selectedFile) return alert('Veuillez sélectionner un fichier.');
+        // Envoyer le fichier au backend
+        const response = await fetch('http://127.0.0.1:5000/file_scan', {
+            method: 'POST',
+            body: formData,
+        });
 
-  scanButton.disabled = true;
-  loading.style.display = 'block';
-  results.innerHTML = '';
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Réponse du backend :", data);
 
-  const formData = new FormData();
-  formData.append('file', selectedFile);
+            // Afficher les résultats
+            statusElement.innerText = `Analyse terminée : ${JSON.stringify(data, null, 2)}`;
 
-  console.log('Fichier sélectionné :', selectedFile);
-  console.log('FormData :', formData.get('file'));
-
-  try {
-    // Envoyer le fichier pour analyse
-    const scanResponse = await axios.post('http://localhost:5000/scan', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-
-    const analysisId = scanResponse.data.data.id;
-
-    // Vérifier périodiquement les résultats
-    const intervalId = setInterval(async () => {
-      const reportResponse = await axios.get(`http://localhost:5000/report/${analysisId}`);
-      const reportData = reportResponse.data.data;
-
-      if (reportData.attributes.status === 'completed') {
-        clearInterval(intervalId);
-        results.innerHTML = `<pre>${JSON.stringify(reportData, null, 2)}</pre>`;
-        loading.style.display = 'none';
-      }
-    }, 5000);
-  } catch (error) {
-    results.innerHTML = `<p>Erreur : ${error.message}</p>`;
-    loading.style.display = 'none';
-    scanButton.disabled = false;
-  }
+        } else {
+            const errorData = await response.json();
+            console.error("Erreur :", errorData);
+            statusElement.innerText = `Erreur pendant l'analyse : ${errorData.error}`;
+        }
+    } catch (error) {
+        console.error("Erreur lors de l'envoi du fichier :", error.message);
+        statusElement.innerText = "Une erreur est survenue lors de l'envoi du fichier.";
+    }
 });

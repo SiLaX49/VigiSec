@@ -1,159 +1,47 @@
-.page-d-accueil {
-  background-color: #0a152f;
-  display: flex;
-  flex-direction: column; /* Mise en colonne pour centrer tous les éléments */
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh; /* Remplir toute la hauteur de la fenêtre */
-  width: 100%;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
   margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.page-d-accueil .div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #0a152f;
-  width: 100%;
-  max-width: 1200px; /* Limiter la largeur pour éviter un étirement excessif */
-  height: auto; /* Ajuster automatiquement en fonction du contenu */
+#app {
+  text-align: center;
+  background: white;
   padding: 20px;
-  box-sizing: border-box;
-}
-
-.page-d-accueil .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  background-color: #122144;
-  padding: 10px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  box-sizing: border-box;
-}
-
-.page-d-accueil .security-shield-logo {
-  height: auto;
-  max-height: 80px;
-  width: auto;
-}
-
-.page-d-accueil .text-wrapper-2 {
-  font-family: "Montserrat-Regular", Helvetica;
-  font-weight: 400;
-  color: #ffffff;
-  font-size: 36px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-.page-d-accueil .bienvenue-sur-igisec {
-  font-family: "Montserrat-Regular", Helvetica;
-  font-weight: 400;
-  color: #ffffff;
-  font-size: 64px;
-  margin: 40px 0;
-  text-align: center;
-}
-
-.page-d-accueil .bouton-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 30px;
-  background-color: #182949;
-  color: white;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  margin: 20px auto;
-}
-
-.page-d-accueil .bouton-wrapper:hover {
-  transform: scale(1.1);
-  background-color: #1c315a;
-}
-
-.page-d-accueil .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: linear-gradient(135deg, #6dd5ed, #2193b0);
-  border-radius: 15px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  margin: 40px auto;
-  width: fit-content;
-}
-
-.folder {
-  position: relative;
-  animation: float 2.5s infinite ease-in-out;
-  transition: transform 0.3s ease;
-}
-
-.folder:hover {
-  transform: scale(1.05);
-}
-
-.folder .top {
-  background: linear-gradient(135deg, #ff9a56, #ff6f56);
-  width: 80px;
-  height: 20px;
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 2;
-}
-
-.folder .bottom {
-  background: linear-gradient(135deg, #ffe563, #ffc663);
-  width: 120px;
-  height: 80px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-  border-radius: 0 10px 10px 10px;
-  position: relative;
-  top: -10px;
-}
-
-.custom-file-upload {
-  font-size: 1.1em;
-  color: #ffffff;
-  text-align: center;
-  margin-top: 20px;
-  padding: 15px 25px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
   border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
-  display: inline-block;
+  margin-top: 10px;
 }
 
-.custom-file-upload:hover {
-  background: rgba(255, 255, 255, 0.4);
+button:hover {
+  background-color: #0056b3;
 }
 
-.custom-file-upload input[type="file"] {
-  display: none;
+input {
+  margin-top: 10px;
+  padding: 8px;
+  width: calc(100% - 20px);
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+#result {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
 }

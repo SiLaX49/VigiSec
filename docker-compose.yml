@@ -10,7 +10,6 @@ services:
       - ./backend/uploads:/app/uploads
     depends_on:
       - database
-
   database:
     image: postgres:latest
     environment:
@@ -19,6 +18,7 @@ services:
       POSTGRES_DB: vigisec_db
     ports:
       - "5432:5432"
+
   frontend:
     image: node:16
     working_dir: /app
