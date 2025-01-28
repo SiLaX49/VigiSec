@@ -1,51 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <title>Analyse de Fichiers - Vigisec</title>
-  <link rel="stylesheet" href="globals.css" />
-  <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigisec</title>
+    <!-- Lien vers le fichier CSS externe -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Importer la police Montserrat depuis Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="page-d-accueil">
-  <div class="div">
-    <!-- En-tête -->
-    <header class="header">
-      <div class="block">
-        <img class="security-shield-logo" src="images/security_shield_logo.png" alt="Logo Vigisec" />
-      </div>
-      <div class="header-auth">
-        <button id="minimize" class="button"><span class="text-wrapper">Minimize</span></button>
-        <button id="close" class="button"><span class="text-wrapper">Close</span></button>
-      </div>
+    <!-- Header -->
+    <header>
+        <h1>Vigisec</h1>
+        <div class="buttons">
+            <button class="uiverse-button-choice" onclick="window.location.href='inscription.html'">Register</button>
+            <button class="uiverse-button-choice" onclick="window.location.href='login.html'">Login</button>
+        </div>
     </header>
 
-    <!-- Titre principal -->
-    <div class="bienvenue-sur-igisec">
-      Bienvenue sur <img class="security-shield-logo" src="images/security_shield_logo.png" alt="Vigisec" /> igiSec !
+    <!-- Section centrale -->
+    <div class="welcome">
+        <span class="welcome-text">Bienvenue sur Vigisec</span>
+
+        <!-- Dossier animé -->
+        <div class="folder">
+            <div class="top"></div>
+            <div class="bottom"></div>
+        </div>
+
+        <!-- Bouton "Choisissez un fichier" -->
+        <label class="uiverse-button-choice">
+            <input type="file" id="file-input" />
+            Choisissez un fichier
+        </label>
+
+        <!-- Bouton "Analyse" -->
+        <button class="uiverse-button-analyse">
+            <span class="uiverse-button-text">Analyse</span>
+        </button>
     </div>
 
-    <!-- Sélecteur de fichier -->
-    <div class="container">
-      <label class="custom-file-upload">
-        <input id="fileInput" type="file" />
-        Choose a file
-      </label>
-      <div id="fileName" style="margin-top: 10px; color: white;"></div>
-      <button id="scanButton" class="button" disabled>Analyser le fichier</button>
-    </div>
+    <!-- Script pour gérer la sélection de fichier -->
+    <script>
+        // Récupérer l'élément input de type fichier
+        const fileInput = document.getElementById('file-input');
 
-    <!-- Chargement -->
-    <div id="loading" style="display: none; margin-top: 20px; color: white;">
-      Analyse en cours... Veuillez patienter.
-    </div>
-
-    <!-- Résultats -->
-    <div id="results" style="margin-top: 20px; color: white;"></div>
-  </div>
-</div>
-
-<script src="renderer.js"></script>
+        // Écouter l'événement "change" pour détecter la sélection d'un fichier
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0]; // Récupérer le fichier sélectionné
+            if (file) {
+                alert(`Fichier sélectionné : ${file.name}`);
+                // Vous pouvez ajouter ici la logique pour traiter le fichier
+            }
+        });
+    </script>
 </body>
 </html>
