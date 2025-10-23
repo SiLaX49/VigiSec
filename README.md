@@ -87,9 +87,3 @@ Si vous exécutez manuellement l'application :
 - **sadburberry**
 
 ---
-
-## 📄 Licence
-
-Ce projet est sous licence [MIT](LICENSE). Vous êtes libre de l'utiliser, de le modifier et de le distribuer, sous réserve de respecter les termes de cette licence.
-
----
