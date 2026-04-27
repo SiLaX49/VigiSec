@@ -1,0 +1,6 @@
+name: Security
+on: [push, pull_request]
+
+jobs:
+  scan:
+    uses: SiLaX49/workflows/.github/workflows/security-scan.yml@main
